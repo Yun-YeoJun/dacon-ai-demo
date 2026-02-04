@@ -22,8 +22,8 @@ os.environ["HF_HUB_DISABLE_XET"] = os.environ.get("HF_HUB_DISABLE_XET", "1")
 os.environ["HF_HUB_DISABLE_SYMLINKS"] = os.environ.get("HF_HUB_DISABLE_SYMLINKS", "1")
 os.environ["HF_HUB_ENABLE_TQDM_MULTIPROCESSING"] = os.environ.get("HF_HUB_ENABLE_TQDM_MULTIPROCESSING", "0")
 
-# HF 캐시 경로 (Windows 기본값)
-os.environ["HF_HOME"] = os.environ.get("HF_HOME", r"C:\hf_cache_clean")
+# HF 캐시 경로
+os.environ["HF_HOME"] = os.environ.get("HF_HOME", os.path.join(os.path.expanduser("~"), ".cache", "huggingface"))
 
 # =====================================================
 # 1) 기본 설정 (KANANA)
@@ -35,10 +35,10 @@ BASE_MODEL = os.getenv("BASE_MODEL", "kakaocorp/kanana-1.5-2.1b-instruct-2505")
 # - 없으면 아래 기본값을 사용
 ADAPTER_DIR = os.getenv(
     "ADAPTER_DIR",
-    r".\korsmishing-qlora_kanana"  # ✅ 실제 폴더명으로 수정 (루트)
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "korsmishing-qlora_kanana")
 )
 
-CACHE_DIR = os.getenv("HF_HOME", r"C:\hf_cache_clean")
+CACHE_DIR = os.getenv("HF_HOME", "/tmp/hf_cache")
 HF_TOKEN = os.getenv("HUGGINGFACE_HUB_TOKEN", "").strip() or None
 
 # ✅ 절대경로로 강제 변환 (Windows에서 상대경로/한글경로 이슈 방지)
