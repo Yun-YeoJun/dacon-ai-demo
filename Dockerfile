@@ -18,7 +18,7 @@ COPY app.py .
 
 # LoRA 어댑터 복사 (필요시)
 # 로컬 어댑터를 사용하려면 아래 주석 해제
-COPY korsmishing-qlora_kanana ./korsmishing-qlora_kanana
+# COPY korsmishing-qlora_kanana ./korsmishing-qlora_kanana
 
 # 환경변수 설정
 ENV HF_HOME=/app/hf_cache
